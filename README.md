@@ -4,8 +4,8 @@ Examples and sample code to kickstart developement projects in different program
 Folder | Description
 -------|---------------
 [java](https://github.com/informix/informix-db-examples/tree/master/java) | Examples in Java
-[nodejs](https://github.com/infomrix/informix-db-examples/tree/master/nodejs) | Examples in Javascript for NodeJs
-[python](https://github.com/infomrix/informix-db-examples/tree/master/python) | Examples in Python
+[nodejs](https://github.com/informix/informix-db-examples/tree/master/nodejs) | Examples in Javascript for NodeJs
+[python](https://github.com/informix/informix-db-examples/tree/master/python) | Examples in Python
 
 
 ## Required Software
