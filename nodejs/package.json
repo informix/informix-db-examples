@@ -1,0 +1,19 @@
+{
+  "name": "informix-nodejs-examples",
+  "version": "1.0.0",
+  "description": "Example programs for Informix NodeJS driver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "informix",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ifxnjs": "^8.0.1",
+    "q": "^1.5.1"
+  }
+}
