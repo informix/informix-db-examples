@@ -1,3 +1,9 @@
+/*
+ * Licensed Materials - Property of HCL
+ * (c) Copyright HCL Technologies Ltd. 2018.  All Rights Reserved.
+ */
+package smartTriggers;
+
 import java.sql.SQLException;
 
 import com.google.gson.JsonObject;
@@ -9,8 +15,7 @@ public class SmartTrigger implements IfmxSmartTriggerCallback {
 	
 	private final JsonParser p = new JsonParser();
 	public static void main(String[] args) throws SQLException {
-		try(IfxSmartTrigger trigger = new IfxSmartTrigger(
-				"informix-sqli://localhost:9088/sysadmin:user=informix;password=informix");) {
+		try(IfxSmartTrigger trigger = new IfxSmartTrigger(args[0]);) {
 			trigger.timeout(5).label("bank_alert"); // optional parameters
 			trigger.addTrigger("account", "informix", "bank", "SELECT * FROM account WHERE balance < 0", new SmartTrigger());
 			trigger.watch();

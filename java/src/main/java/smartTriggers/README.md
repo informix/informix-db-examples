@@ -11,10 +11,10 @@ Informix Smart Triggers is a mechanism to watch for certain events on your datab
 
 ## Supporting Documentation
 
-* http://www.informixcommunity.com/blogs/introducing-informix-smart-triggers
-* http://informix.hcldoc.com/help/index.jsp?topic=%2Fcom.ibm.erep.doc%2Fids_erp_pd_01.htm
-* http://informix.hcldoc.com/help/index.jsp?topic=%2Fcom.ibm.jdbc_pg.doc%2Fids_jdbc_st_01.htm
-* http://static.javadoc.io/com.ibm.informix/jdbc/4.10.10/com/informix/smartTrigger/package-summary.html
+* <http://www.informixcommunity.com/blogs/introducing-informix-smart-triggers>
+* <http://informix.hcldoc.com/help/index.jsp?topic=%2Fcom.ibm.erep.doc%2Fids_erp_pd_01.htm>
+* <http://informix.hcldoc.com/help/index.jsp?topic=%2Fcom.ibm.jdbc_pg.doc%2Fids_jdbc_st_01.htm>
+* <http://static.javadoc.io/com.ibm.informix/jdbc/4.10.12/com/informix/smartTrigger/package-summary.html>
 
 ## Setup
 
@@ -33,6 +33,5 @@ With the setup ready, you can create an IfxSmartTrigger object.  This object nee
 
 ## Running the demo
 
-* You must change the JDBC URL in the `src/main/java/SmartTrigger.java` file to match your Informix server.
-* You can build the demo with `> ./gradlew`
-* You can then run the demo with `./build/install/smart-trigger/bin/smart-trigger`
+* You must pass in the JDBC URL as the first argument to the program.
+* `> java -cp build/libs/informix-examples-java.jar smartTriggers.SmartTrigger "{connection-url}"`
