@@ -32,7 +32,7 @@ Make sure you have `java` in your PATH.
 
 You can run any example by starting the jar we have just built, and provide 
 
-`> java -cp build/libs/informix-examples-java.jar performance.AutoFree "jdbc:informix-sqli://localhost:9088/testdb:user=informix;password=in4mix"`
+`> java -cp build/libs/informix-examples-java.jar performance.AutoFree "jdbc:informix-sqli://localhost:9088/testdb:user=informix;password=password"`
 
 Unless mentioned otherwise, you must provide the connection URL as the first and only argument to the sample you wish to run.
 
