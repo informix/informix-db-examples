@@ -1,0 +1,8 @@
+{
+  "host": "localhost",
+  "port": "9088",
+  "user": "informix",
+  "password": "in4mix",
+  "database": "<db>",
+  "server": "<server name>"
+}

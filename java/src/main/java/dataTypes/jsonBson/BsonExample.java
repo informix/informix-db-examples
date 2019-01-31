@@ -27,9 +27,17 @@ import java.util.Map;
 
 import com.informix.jdbc.IfxBSONObject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class BsonExample {
-	Connection conn = null;
-	IfxBSONObject bsonObject = null;
+
+
+	
+	private static final Logger logger = LoggerFactory.getLogger(BsonExample.class);
+
+	private Connection conn = null;
+	private IfxBSONObject bsonObject = null;
 
 	public static void main(String[] args) {
 		String url = null;
@@ -42,12 +50,11 @@ public class BsonExample {
 			BsonExample demo = new BsonExample();
 			demo.run(url);
 		} catch (SQLException e) {
-			System.err.println(MessageFormat.format("SQL Code: {0}. Message: {1}", e.getErrorCode(), e.getMessage()));
+			logger.error("SQL Code: {}. Message: {}", e.getErrorCode(), e.getMessage(), e);
 		}
 	}
 
 	public void run(String url) throws SQLException {
-		System.out.println("******************* DEMO STARTS *********************************");
 		try (Connection con = DriverManager.getConnection(url)) {
 			this.conn = con;
 			createTables();
@@ -56,8 +63,6 @@ public class BsonExample {
 			insertBsonAsString();
 			basicBsonQuery();
 		}
-
-		System.out.println("******************* DEMO ENDS  *********************************");
 	}
 
 	private void createTables() throws SQLException {
@@ -67,9 +72,9 @@ public class BsonExample {
 		try (Statement s = this.conn.createStatement()) {
 			String dropSQL = "DROP TABLE IF EXISTS bsontab";
 			String createSQL = "CREATE TABLE bsontab(c1 BSON)";
-			System.out.println(dropSQL);
+			logger.info("Exec: {}",dropSQL);
 			s.execute(dropSQL);
-			System.out.println(createSQL);
+			logger.info("Exec: {}", createSQL);
 			s.execute(createSQL);
 		}
 	}
@@ -78,17 +83,16 @@ public class BsonExample {
 		IfxBSONObject bson = new IfxBSONObject();
 		bson.put("id", 1);
 		bson.put("name", "John Smith");
-
 		/*
 		 * You can convert the bson to a straight map object with toMap();
 		 */
 		Map<String, Object> map = bson.toMap();
-		System.out.println(MessageFormat.format("ID={0} \t Name={1}", map.get("id"), map.get("name")));
+		logger.info("ID={} \t Name={}", map.get("id"), map.get("name"));
 
 		/*
 		 * You can also get values directly from the IfxBSONObject
 		 */
-		System.out.println(MessageFormat.format("ID is {0}", bson.get("id")));
+		logger.info("ID is {}", bson.get("id"));
 	}
 
 	private void insertBson() throws SQLException {
@@ -124,8 +128,8 @@ public class BsonExample {
 			try (ResultSet rs = p.executeQuery()) {
 				while (rs.next()) {
 					Object o = rs.getObject("c1");
-					System.out.println(MessageFormat.format("Data type from query: {0}", o.getClass().getName()));
-					System.out.println(MessageFormat.format("String output of object ==> {0}", o.toString()));
+					logger.info("Data type from query: {}", o.getClass().getName());
+					logger.info("String output of object ==> {}", o.toString());
 				}
 			}
 			/*
@@ -135,7 +139,7 @@ public class BsonExample {
 			try (ResultSet rs = p.executeQuery()) {
 				while (rs.next()) {
 					IfxBSONObject o = (IfxBSONObject) rs.getObject("c1");
-					System.out.println(MessageFormat.format("ID={0} \t Name={1}", o.get("id"), o.get("name")));
+					logger.info("ID={} \t Name={}", o.get("id"), o.get("name"));
 				}
 			}
 		}

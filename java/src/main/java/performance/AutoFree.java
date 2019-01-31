@@ -1,6 +1,6 @@
 /*
  * Licensed Materials - Property of HCL
- * (c) Copyright HCL Technologies Ltd. 2018.  All Rights Reserved.
+ * (c) Copyright HCL Technologies Ltd. 2018, 2019.  All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,9 @@ import java.util.Properties;
 
 import com.informix.jdbc.IfmxStatement;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * AutoFree is a feature that can save a round trip when closing both a ResultSet and a Statement object
@@ -33,6 +36,9 @@ import com.informix.jdbc.IfmxStatement;
  * 
  */
 public class AutoFree {
+
+	private static final Logger logger = LoggerFactory.getLogger(AutoFree.class);
+
 	public static void main(String[] args) throws SQLException {
 		if(args.length != 1) {
 			throw new NullPointerException("You must pass the connection URL as the first argument to the demo");
@@ -53,7 +59,7 @@ public class AutoFree {
 			
 			try(ResultSet rs = s.executeQuery("SELECT FIRST 10 tabname FROM systables")) {
 				while(rs.next()) {
-					System.out.println(MessageFormat.format("{0}", rs.getString(1)));
+					logger.info("{}", rs.getString(1));
 				}
 			}
 			/*

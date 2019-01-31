@@ -28,6 +28,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * Shows how to send and receive JSON objects from the Informix server
@@ -38,6 +41,8 @@ import com.google.gson.JsonParser;
  *
  */
 public class JsonExample {
+
+	private static final Logger logger = LoggerFactory.getLogger(JsonExample.class);
 
 	public static void main(String [] args) throws SQLException {
 		if(args.length != 1) {
@@ -76,7 +81,7 @@ public class JsonExample {
 						String jsonAsString = rs.getString(1);
 						JsonElement o = new JsonParser().parse(jsonAsString);
 						JsonObject json = o.getAsJsonObject();
-						System.out.println("Name=" + json.get("name").getAsString());
+						logger.info("Name={}", json.get("name").getAsString());
 					}
 				}
 			}

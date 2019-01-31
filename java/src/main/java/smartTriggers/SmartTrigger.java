@@ -16,33 +16,74 @@
  */
 package smartTriggers;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.informix.smartTrigger.IfmxSmartTriggerCallback;
 import com.informix.smartTrigger.IfxSmartTrigger;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class SmartTrigger implements IfmxSmartTriggerCallback {
 	
 	private final JsonParser p = new JsonParser();
-	public static void main(String[] args) throws SQLException {
+	private static final Logger logger = LoggerFactory.getLogger(SmartTrigger.class);
+
+	public static void main(String[] args) throws SQLException, InterruptedException {
+		try(Connection c = DriverManager.getConnection(args[0])) {
+			try(Statement s = c.createStatement()) {
+				s.execute("CREATE DATABASE IF NOT EXISTS banktest with log");
+				s.execute("DATABASE banktest");
+				s.execute("CREATE TABLE IF NOT EXISTS account (id integer primary key, name varchar(200), balance integer)");
+				s.execute("DELETE FROM account");
+
+				//Start with $20
+				s.execute("INSERT INTO account values(1, 'Checking', 20)");
+			}
+		}
 		try(IfxSmartTrigger trigger = new IfxSmartTrigger(args[0]);) {
 			trigger.timeout(5).label("bank_alert"); // optional parameters
-			trigger.addTrigger("account", "informix", "bank", "SELECT * FROM account WHERE balance < 0", new SmartTrigger());
-			trigger.watch();
+			trigger.addTrigger("account", "informix", "banktest", "SELECT * FROM account WHERE balance < 0", new SmartTrigger());
+			trigger.start();
+
+			Thread.sleep(5000);
+			logger.info("Starting account updates");
+			try(Connection c = DriverManager.getConnection(args[0])) {
+				try(Statement s = c.createStatement()) {
+					s.execute("DATABASE banktest");
+				}
+				try(PreparedStatement p = c.prepareStatement("UPDATE account set balance = ? WHERE id = 1")) {
+					for(int i = 20; i > -20; i=i - 5) {
+						p.setInt(1, i);
+						p.execute();
+						logger.info("Updated balance in table to ${}", i);
+						Thread.sleep(2000);
+					}
+				}
+			}
 		}
 	}
 
 	@Override
 	public void notify(String jsonString) {
 		JsonObject json = p.parse(jsonString).getAsJsonObject();
-		System.out.println("Bank Account Ping!");
 		if (json.has("ifx_isTimeout")) {
-			System.out.println("-- No balance issues");
+			logger.debug("[SmartTrigger] Server ping: No balance issues");
 		} else {
-			System.out.println("-- Bank Account Alert detected!");
-			System.out.println("   " + json);
+			json = json.get("rowdata").getAsJsonObject();
+			logger.debug("{}", json);
+			logger.warn("[SmartTrigger] ALERT on account #{}. Balance ${}", 
+				json.get("id").getAsInt(), 
+				json.get("balance").getAsInt());
+			
 		}
 	}
 }

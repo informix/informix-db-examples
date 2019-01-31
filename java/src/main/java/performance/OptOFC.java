@@ -24,6 +24,9 @@ import java.sql.Statement;
 import java.text.MessageFormat;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 
  * OPTOFC is a network traffic reduction feature.
@@ -33,6 +36,8 @@ import java.util.Properties;
  *
  */
 public class OptOFC {
+
+	private static final Logger logger = LoggerFactory.getLogger(OptOFC.class);
 	
 	public static void main(String[] args) throws SQLException {
 		if(args.length != 1) {
@@ -53,7 +58,7 @@ public class OptOFC {
 				 * When the resultset is done fetching rows, the cursor is automatically closed by the server
 				 */
 				while(rs.next()) {
-					System.out.println(MessageFormat.format("{0}", rs.getString(1)));
+					logger.info("{}", rs.getString(1));
 				}
 				rs.close(); //No network traffic sent. Cursor is already closed on the server
 			}
