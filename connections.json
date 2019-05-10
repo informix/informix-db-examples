@@ -1,8 +1,10 @@
 {
-  "host": "localhost",
+  "host": "server",
   "port": "9088",
   "user": "informix",
   "password": "in4mix",
-  "database": "<db>",
-  "server": "<server name>"
+  "database": "db1",
+  "server": "informix",
+  "mqttPort" : "27883",
+  "restPort" : 27018
 }
