@@ -1,0 +1,22 @@
+### Example commands to run the sample code
+###
+
+
+java
+- The java examples do not use the connections.json.  Instead you pass in the URL into the program.
+
+## Setup database
+## Note:  we connect to sysadmin here 
+java -cp build/libs/informix-examples-java.jar setup.Setup "jdbc:informix-sqli://server:9088/sysadmin:user=informix;password=in4mix"
+
+## Run smartTrigger demo
+java -cp build/libs/informix-examples-java.jar smartTriggers.SmartTrigger "jdbc:informix-sqli://server:9088/banktest:user=informix;password=in4mix"
+
+
+python
+
+
+nodejs
+
+
+

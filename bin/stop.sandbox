@@ -1,0 +1,7 @@
+
+## Host Script
+
+docker stop server
+docker stop client
+docker rm server
+docker rm client

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+## Host Utility
+##
+##  If docker container named 'server' and 'client' exist
+##  Use dsh server to connect to the server container &
+##      dsh client to connec tto the client container
+##
+##      
+
+if [ $# -eq 1 ]
+then
+docker exec -it $* bash
+else
+echo "dsh <container name>"
+fi

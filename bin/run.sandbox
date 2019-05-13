@@ -1,0 +1,21 @@
+
+
+## Host Script
+
+## Make ifx-network
+##
+cnt=`docker network ls |grep ifx-network |wc -l`
+if [[ $cnt == "0" ]]
+then
+   docker network create -d bridge ifx-network
+fi
+
+## Run server container
+##
+docker run -td --name server -e LICENSE=accept --network=ifx-network -p 9088:9088 -p 9089:9089 -p 27017:27017 -p 27018:27018 -p 27883:27883 -e TYPE=oltp  ibmcom/informix-developer-database 
+
+
+## Run client container
+##
+docker run -td --name client -e LICENSE=accept --network=ifx-network -p 9001:9001 ibmcom/informix-developer-sandbox
+
