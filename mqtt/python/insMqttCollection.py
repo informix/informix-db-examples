@@ -1,6 +1,6 @@
 from datetime import datetime
 import paho.mqtt.client as mqtt
-imiport json
+import json
 
 ###  Open the Connection parameters file
 ###

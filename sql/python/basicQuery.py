@@ -4,7 +4,7 @@ import json
 connectionJson = json.loads(open("../../connections.json").read());
 print (connectionJson)
 
-connectionString = "SERVER=" + connectionJson['server'] + ";DATABASE=" + connectionJson['database'] + ";HOST=" + connectionJson['host'] + ";SERVICE=" + connectionJson['port'] + ";UID=" + connectionJson['user'] + ";PWD=" + connectionJson['password'] + ";PROTOCOL=onsoctcp"
+connectionString = "SERVER=" + connectionJson['server'] + ";DATABASE=" + connectionJson['database'] + ";HOST=" + connectionJson['host'] + ";SERVICE=" + str(connectionJson['port']) + ";UID=" + connectionJson['user'] + ";PWD=" + connectionJson['password'] + ";PROTOCOL=onsoctcp"
 print (connectionString)
 conn = IfxPy.connect(connectionString, "", "")
 
