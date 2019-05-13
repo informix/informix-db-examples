@@ -43,22 +43,22 @@ Unless mentioned otherwise, you must provide the connection URL as the first and
 
 Sample | Command | Description
 -------|---------|-------------
-[Auto Free](https://github.com/informix/informix-db-examples/tree/master/java/src/main/java/performance/AutoFree.java) | `> java -cp build/libs/informix-examples-java.jar performance.AutoFree "{connection-url}"` | Reduce network round trip by auto-freeing statement
-[OptOFC](https://github.com/informix/informix-db-examples/tree/master/java/src/main/java/performance/OptOFC.java) | `> java -cp build/libs/informix-examples-java.jar performance.OptOFC "{connection-url}"` | Reduce network round trip by auto-close resultset (optimize open-fetch-close)
+[Auto Free](src/main/java/performance/AutoFree.java) | `> java -cp build/libs/informix-examples-java.jar performance.AutoFree "{connection-url}"` | Reduce network round trip by auto-freeing statement
+[OptOFC](src/main/java/performance/OptOFC.java) | `> java -cp build/libs/informix-examples-java.jar performance.OptOFC "{connection-url}"` | Reduce network round trip by auto-close resultset (optimize open-fetch-close)
 
 ### Data Types
 
 Sample | Command | Description
 -------|---------|-------------
-[BSON](https://github.com/informix/informix-db-examples/tree/master/java/src/main/java/dataTypes/jsonBson/BsonExample.java) | `> java -cp build/libs/informix-examples-java.jar dataTypes.jsonBson.BsonExample "{connection-url}"` | Demonstrate use of BSON object
-[JSON](https://github.com/informix/informix-db-examples/tree/master/java/src/main/java/dataTypes/jsonBson/JsonExample.java) | `> java -cp build/libs/informix-examples-java.jar dataTypes.jsonBson.JsonExample "{connection-url}"` | Demonstrate use of JSON with Informix
+[BSON](src/main/java/dataTypes/jsonBson/BsonExample.java) | `> java -cp build/libs/informix-examples-java.jar dataTypes.jsonBson.BsonExample "{connection-url}"` | Demonstrate use of BSON object
+[JSON](src/main/java/dataTypes/jsonBson/JsonExample.java) | `> java -cp build/libs/informix-examples-java.jar dataTypes.jsonBson.JsonExample "{connection-url}"` | Demonstrate use of JSON with Informix
 
 ### Smart Triggers
 Sample | Command | Description
 -------|---------|-------------
-[Smart Triggers](https://github.com/informix/informix-db-examples/tree/master/java/src/main/java/smartTriggers/SmartTrigger.java) | _See [README.md](https://github.com/informix/informix-db-examples/tree/master/java/src/main/java/smartTriggers/README.md)_ | Use smart trigger to receive remote triggers from database insert/update/deletes
+[Smart Triggers](src/main/java/smartTriggers/SmartTrigger.java) | _See [README.md](src/main/java/smartTriggers/README.md)_ | Use smart trigger to receive remote triggers from database insert/update/deletes
 
 ## API Documentation
 
-* <http://www.javadoc.io/doc/com.ibm.informix/jdbc/4.10.12>
+* <http://www.javadoc.io/doc/com.ibm.informix/jdbc/4.50.1>
 
