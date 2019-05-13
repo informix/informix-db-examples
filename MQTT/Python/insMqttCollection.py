@@ -23,13 +23,13 @@ client = mqtt.Client(protocol=mqtt.MQTTv31)
 client.on_publish = on_publish
 
 ### Connect to Informix MQTT WL
-client.connect(connectionJson['server'], connectionJson['mqttPort'])
+client.connect(connectionJson['host'], connectionJson['mqttPort'])
 
 client.loop_start()
 
 ### Setup data for insert
 ### Publish data to table name collection1
-dbname=collectionJson['database']+'.collection1'
+dbname=connectionJson['database']+'.collection1'
 for i in range(1, NUMINS + 1):
     ct = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-1]
     msgstr = '{  "sensor_id":%d, "tstamp" : "%s",  "d" : { "col4": "king bob"}  }'  % (i, ct)

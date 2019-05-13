@@ -9,6 +9,9 @@ import time
 
 NUMINS = 10
 
+connectionJson = json.loads(open("../../connections.json").read())
+print(connectionJson)
+
 def on_publish(client, userdata, mid):
     """ on_publish:
     """
@@ -20,11 +23,12 @@ def on_publish(client, userdata, mid):
 client = mqtt.Client(protocol=mqtt.MQTTv31)
 client.on_publish = on_publish
 
-client.connect("127.0.0.1", 27883)
+client.connect(connectionJson['host'], connectionJson['mqttPort'])
 
 client.loop_start()
 
 
+dbname=connectionJson['database']+'.iot_data_ts'
 for i in range(1, NUMINS + 1):
     #currentTimeStr = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-1]
 
@@ -39,7 +43,7 @@ for i in range(1, NUMINS + 1):
     print("   TimeNow:",currentTimeNow)
     print("   TimeInt:",currentTimeInt)
     print(" * TimeStr:",currentTimeStr)
-    (result, mid) = client.publish("iot.iot_data_ts", msgstr, qos=1)
+    (result, mid) = client.publish(dbname, msgstr, qos=1)
     if result != mqtt.MQTT_ERR_SUCCESS:
         print("Error Publish: ", i)
 
