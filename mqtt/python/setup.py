@@ -1,10 +1,11 @@
 import IfxPy
 import json
 import datetime
-connectionJson = json.loads(open("../connections.json").read());
+
+connectionJson = json.loads(open("../../connections.json").read());
 print (connectionJson)
 
-connectionString = "SERVER=" + connectionJson['server'] + ";DATABASE=" + connectionJson['database'] + ";HOST=" + connectionJson['host'] + ";SERVICE=" + connectionJson['port'] + ";UID=" + connectionJson['user'] + ";PWD=" + connectionJson['password'] + ";PROTOCOL=onsoctcp"
+connectionString = "SERVER=" + connectionJson['server'] + ";DATABASE=" + connectionJson['database'] + ";HOST=" + connectionJson['host'] + ";SERVICE=" + str(connectionJson['port']) + ";UID=" + connectionJson['user'] + ";PWD=" + connectionJson['password'] + ";PROTOCOL=onsoctcp"
 print (connectionString)
 conn = IfxPy.connect(connectionString, "", "")
 
@@ -27,7 +28,8 @@ SetupSqlSet = [
     "EXECUTE PROCEDURE TSContainerDestroy('iot_data_cont')", 
     "EXECUTE PROCEDURE TSContainerCreate('iot_data_cont', 'rootdbs', 'iot_data_t', 2048, 2048)", 
     "CREATE TABLE iot_data_ts ( id INT8, desc VARDCHAR(128), data TIMESERIES(iot_data_t), PRIMARY KEY(id)) lock mode row", 
-    "EXECUTE PROCEDURE TSCreateVirtualTab('iot_data_v', 'iot_data_ts' 'origin(ifx_dt), calendar(ts_1min), container(iot_data_cont), threshold(0), irregular', 0, 'data')", 
+    "EXECUTE PROCEDURE TSCreateVirtualTab('iot_data_v', 'iot_data_ts', 'origin("+ifx_dt+"), calendar(ts_1min), container(iot_data_cont), threshold(0), irregular', 0, 'data')", 
+    "DROP TABLE IF EXISTS tab1 ",
     "CREATE TABLE tab1 (col1 integer, col2 integer, col3 char(50))"
 ]
 	
