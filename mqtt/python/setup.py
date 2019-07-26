@@ -35,4 +35,7 @@ SetupSqlSet = [
 	
 for sql in SetupSqlSet:
     print (sql)
-    stmt = IfxPy.exec_immediate(conn, sql)
+    try:
+       stmt = IfxPy.exec_immediate(conn, sql)
+    except Exception as e:
+       print ('Error: ',e)
