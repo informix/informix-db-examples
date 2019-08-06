@@ -1,2 +1,4 @@
 /.gradle/
 .project
+sql/java/.classpath
+sql/java/.settings

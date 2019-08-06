@@ -69,6 +69,12 @@ public class SmartTrigger implements IfmxSmartTriggerCallback {
 					}
 				}
 			}
+			catch(Exception e) {
+				logger.error("Exception updating bank balance", e);
+			}
+		}
+		catch(Exception e) {
+			logger.error("Exception starting smart trigger");
 		}
 	}
 

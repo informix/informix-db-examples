@@ -1,6 +1,6 @@
 /*
  * Licensed Materials - Property of HCL
- * (c) Copyright HCL Technologies Ltd. 2018.  All Rights Reserved.
+ * (c) Copyright HCL Technologies Ltd. 2018, 2019.  All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.MessageFormat;
 import java.util.Map;
 
 import com.informix.jdbc.IfxBSONObject;
@@ -31,13 +30,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class BsonExample {
-
-
-	
 	private static final Logger logger = LoggerFactory.getLogger(BsonExample.class);
 
 	private Connection conn = null;
-	private IfxBSONObject bsonObject = null;
 
 	public static void main(String[] args) {
 		String url = null;

@@ -52,6 +52,7 @@ Sample | Command | Description
 -------|---------|-------------
 [BSON](src/main/java/dataTypes/jsonBson/BsonExample.java) | `> java -cp build/libs/informix-examples-java.jar dataTypes.jsonBson.BsonExample "{connection-url}"` | Demonstrate use of BSON object
 [JSON](src/main/java/dataTypes/jsonBson/JsonExample.java) | `> java -cp build/libs/informix-examples-java.jar dataTypes.jsonBson.JsonExample "{connection-url}"` | Demonstrate use of JSON with Informix
+[Timeseries](src/main/java/dataTypes/timeseries/TimeseriesExample.java) | `> java -cp build/libs/informix-examples-java.jar dataTypes.timeseries.TimeseriesExample "{connection-url}"` | Demonstrate use of timeseries data with Informix
 
 ### Smart Triggers
 Sample | Command | Description
