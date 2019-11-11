@@ -1,0 +1,16 @@
+version: '3'
+services:
+  informix-server1:
+      image: "ibmcom/informix-developer-database"
+      container_name: "ifx1"
+      hostname: "ifx1"
+      environment:
+          LICENSE: 'accept'
+          SIZE:    'small'
+          RUN_FILE_POST_INIT: server-setup.sh
+      ports:
+         - 9088:9088
+         - 9089:9089
+         - 27018:27018
+      volumes:
+          - ${PWD}/config:/opt/ibm/config
