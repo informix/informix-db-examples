@@ -44,8 +44,9 @@ Unless mentioned otherwise, you must provide the connection URL as the first and
 Sample | Command | Description
 -------|---------|-------------
 [Auto Free](src/main/java/performance/AutoFree.java) | `> java -cp build/libs/informix-examples-java.jar performance.AutoFree "{connection-url}"` | Reduce network round trip by auto-freeing statement
+[Insert Performance](src/main/java/performance/InsertPerformance.java) | `> java -cp build/libs/informix-examples-java.jar performance.InsertPerformance "{connection-url}"` | Speed test using a variety of insert options
 [OptOFC](src/main/java/performance/OptOFC.java) | `> java -cp build/libs/informix-examples-java.jar performance.OptOFC "{connection-url}"` | Reduce network round trip by auto-close resultset (optimize open-fetch-close)
-
+[Statement Cache](src/main/java/performance/StatementCache.java) | `> java -cp build/libs/informix-examples-java.jar performance.AutoFree "{connection-url}"` | Speed up database performance and simplify code with statement caches
 ### Data Types
 
 Sample | Command | Description
@@ -61,5 +62,5 @@ Sample | Command | Description
 
 ## API Documentation
 
-* <http://www.javadoc.io/doc/com.ibm.informix/jdbc/4.50.1>
+* <http://www.javadoc.io/doc/com.ibm.informix/jdbc/4.50.3>
 
