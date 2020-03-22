@@ -32,7 +32,7 @@ public class App {
         IfxDataSource ds = new IfxDataSource(url);
         IfxCDCEngine.Builder builder = new IfxCDCEngine.Builder(ds);
         builder.watchTable("testdb:informix:cdcTable", "a", "b");
-        builder.timeout(5);
+        builder.timeout(10);
         try(IfxCDCEngine engine = builder.build()) {
             engine.init();
             IfmxStreamRecord record = null;

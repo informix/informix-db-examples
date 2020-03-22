@@ -4,12 +4,12 @@ This example shows how to use the Informix CDC (change data capture) feature wit
 
 ## Required Software
 
-* Java SDK (IBM, Oracle, RedHat)
-* Access to Maven Central for Informix JDBC as well as a few support libraries
+* Java SDK (IBM, Oracle, OpenJDK, and others)
+* Access to Maven Central for a few libraries
 
 
 ## Building the Samples
-All Examples are built using the Gradle build system. After downloading/cloning this project to your local workstation, you can open a command prompt or Unix Bash shell. Make sure you are inside the `java` subdirectory where this README.md file resides.
+All Examples are built using the Gradle build system. After downloading/cloning this project to your local workstation, you can open a command prompt or Unix Bash shell. Make sure you are inside the `java` subdirectory where this `README.md` file resides.
 
 Make sure `javac` is set in your PATH so the gradle build can use it to compile the java files.
 
@@ -51,7 +51,7 @@ You can use your own, or you can use this quick exmaple
 ### Run the program
 **You MUST connect to the syscdcv1 database to use the CDC streaming**
 
-`> java -cp build/libs/cdc.jar  "jdbc:informix-sqli://localhost:9088/syscdcv1:user=informix;password=password"`
+`> java -jar build/libs/cdc.jar  "jdbc:informix-sqli://localhost:9088/syscdcv1:user=informix;password=password"`
 
 If you decide to watch another database/table, simply change the line in the `src/main/java/cdc/App.java` file from `"testdb:informix:cdcTable", "a", "b"` to what you want to watch.  
 

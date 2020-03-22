@@ -33,6 +33,9 @@ jar {
 			it.isDirectory() ? it : zipTree(it) 
 		}
 	}
+	manifest {
+		attributes 	'Main-Class' : 'cdc.App'	
+	}
 }
 
 application {
