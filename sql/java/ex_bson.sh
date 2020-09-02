@@ -1,0 +1,1 @@
+java -cp build/libs/informix-examples-java.jar dataTypes.jsonBson.BsonExample "jdbc:informix-sqli://server:9088/banktest:user=informix;password=in4mix"
