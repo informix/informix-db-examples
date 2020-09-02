@@ -103,7 +103,7 @@ public class TimeseriesExample {
 		logger.info("Inserting 1000 elements into the timeseries...");
 		try(PreparedStatement p = conn.prepareStatement("UPDATE tstab1 SET sensor = PutElem(sensor, ROW(?, ?)::ts_basic_row) WHERE id=?")) {
 			for(int i = 0; i < 1000; i++) {
-				p.setDate(1, new java.sql.Timestamp(cal.getTimeInMillis()));
+				p.setTimestamp(1, new java.sql.Timestamp(cal.getTimeInMillis()));
 				//add a minute to the calendar
 				cal.add(Calendar.MINUTE, 1);
 				p.setInt(2, r.nextInt(10)); //your sensor/timeseries value  here we limit to 10 values so we can query something interesting 
