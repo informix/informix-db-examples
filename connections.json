@@ -3,7 +3,7 @@
   "port": 9088,
   "user": "informix",
   "password": "in4mix",
-  "database": "stores_demo",
+  "database": "banktest",
   "server": "informix",
   "mqttPort" : 27883,
   "restPort" : 27018
